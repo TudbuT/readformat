@@ -26,6 +26,9 @@ pub fn readf(format: &str, mut s: &str) -> Option<Vec<String>> {
     for n in 0..=occurences {
         // shave off space until next {}
         let i = if let Some(x) = f.find("{}") { x } else { f.len() };
+        if f.len() <= i || s.len() <= i {
+            return None;
+        }
         if &f[0..i] != &s[0..i] {
             return None;
         }
