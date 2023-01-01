@@ -1,4 +1,12 @@
 
+/// The inverse of format!().
+/// The format argument is the format string, and the s argument is the string to match the format
+/// against.
+///
+/// Examples:
+///  `readf("Hello, {}!", "Hello, world!")` => `Some(vec!["world"])`
+///  `readf("I hope {} are {}!", "I hope you are doing well!")` => `Some(vec!["you", "well"])`
+///  `readf("Goodbye, {}!", "Hello, world!")` => `None`
 pub fn readf(format: &str, mut s: &str) -> Option<Vec<String>> {
     if !format.contains("{}") {
         return if format == s { Some(vec![]) } else { None };
@@ -50,6 +58,12 @@ pub fn readf(format: &str, mut s: &str) -> Option<Vec<String>> {
     }
 }
 
+/// Convenience function for single-item format strings. Extra items are dropped.
+///
+/// Examples:
+///  `readf1("Hello, {}!", "Hello, world!")` => `Some("world")`
+///  `readf1("I hope {} are doing well!", "I hope you are doing well!")` => `Some("you")`
+///  `readf1("Goodbye, {}!", "Hello, world!")` => `None`
 pub fn readf1(format: &str, s: &str) -> Option<String> {
     let r = readf(format, s);
     r.map(|x| if x.len() == 0 { "".into() } else { x[0].clone() })

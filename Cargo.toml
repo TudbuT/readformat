@@ -5,5 +5,19 @@ edition = "2021"
 repository = "https://github.com/tudbut/readformat"
 license = "MIT"
 description = "Very small format reader"
+keywords = [
+    "readf",
+    "format",
+    "parser",
+    "parse",
+    "reader",
+    "formatting",
+]
+categories = [
+    "parser-implementations",
+    "encoding",
+    "parsing",
+    "text-processing"
+]
 
 [dependencies]
