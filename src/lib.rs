@@ -26,7 +26,7 @@ pub fn readf(format: &str, mut s: &str) -> Option<Vec<String>> {
     for n in 0..=occurences {
         // shave off space until next {}
         let i = if let Some(x) = f.find("{}") { x } else { f.len() };
-        if f.len() <= i || s.len() <= i {
+        if f.len() < i || s.len() < i {
             return None;
         }
         if &f[0..i] != &s[0..i] {
@@ -35,6 +35,7 @@ pub fn readf(format: &str, mut s: &str) -> Option<Vec<String>> {
         if n == occurences {
             break;
         }
+
         // abcde | a{}cd{} => bcde | cd{}
         f = &f[(i + 2)..]; 
         s = &s[i..];
@@ -84,6 +85,7 @@ mod tests {
         assert_eq!(readf1("Hello, {}!", "hello, person"), None);
         assert_eq!(readf1("hello!", "hello!"), Some("".into()));
         assert_eq!(readf1("Hello!", "hello!"), None);
+        assert_eq!(readf1("{}", "person"), Some("person".into()));
     }
 
     #[test]
@@ -96,5 +98,6 @@ mod tests {
         assert_eq!(readf("Hello, {} and {}!", "hello, person 1 and person 2!"), None);
         assert_eq!(readf("hello!", "hello!"), Some(vec![]));
         assert_eq!(readf("Hello!", "hello!"), None);
+        assert_eq!(readf("{}, {}", "person 1, person 2"), Some(vec!["person 1".into(), "person 2".into()]));
     }
 }
