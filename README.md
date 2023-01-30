@@ -6,5 +6,5 @@ against.
 
 Examples:
  - `readf1("Hello, {}!", "Hello, world!")` => `Some("world")`
- - `readf("I hope {} are {}!", "I hope you are doing well!")` => `Some(vec!["you", "well"])`
+ - `readf("I hope {} are doing {}!", "I hope you are doing well!")` => `Some(vec!["you", "well"])`
  - `readf1("Goodbye, {}!", "Hello, world!")` => `None`
