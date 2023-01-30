@@ -5,7 +5,7 @@
 ///
 /// Examples:
 ///  - `readf("Hello, {}!", "Hello, world!")` => `Some(vec!["world"])`
-///  - `readf("I hope {} are {}!", "I hope you are doing well!")` => `Some(vec!["you", "well"])`
+///  - `readf("I hope {} are doing {}!", "I hope you are doing well!")` => `Some(vec!["you", "well"])`
 ///  - `readf("Goodbye, {}!", "Hello, world!")` => `None`
 pub fn readf(format: &str, mut s: &str) -> Option<Vec<String>> {
     if !format.contains("{}") {
